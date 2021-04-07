@@ -4,7 +4,7 @@ let server;
 if (process.env.NODE_ENV === 'development')  {
   server = 'http://localhost:8080';
 } else {
-  server = 'https://tranquil-dusk-34037.herokuapp.com/';
+  server = 'https://tranquil-dusk-34037.herokuapp.com';
 }
 
 class Register extends React.Component {

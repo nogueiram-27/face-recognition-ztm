@@ -1,5 +1,12 @@
 import React from 'react';
 
+let server;
+if (process.env.NODE_ENV === 'development')  {
+  server = 'http://localhost:8080';
+} else {
+  server = 'https://tranquil-dusk-34037.herokuapp.com/';
+}
+
 class SignIn extends React.Component {
 	constructor(props) {
 		super(props);
@@ -18,7 +25,7 @@ class SignIn extends React.Component {
 	}
 
 	onSubmitSignIn = () => {
-		fetch('http://localhost:8080/signin', {
+		fetch(`${server}/signin`, {
 			method: 'post',
 			headers: { 'Content-Type': 'application/json'},
 			body: JSON.stringify({

@@ -1,5 +1,12 @@
 import React from 'react';
 
+let server;
+if (process.env.NODE_ENV === 'development')  {
+  server = 'http://localhost:8080';
+} else {
+  server = 'https://tranquil-dusk-34037.herokuapp.com/';
+}
+
 class Register extends React.Component {
 	constructor(props) {
 		super(props);
@@ -23,7 +30,7 @@ class Register extends React.Component {
 	}
 
 	onSubmitRegister = () => {
-		fetch('http://localhost:8080/register', {
+		fetch(`${server}/register`, {
 			method: 'post',
 			headers: { 'Content-Type': 'application/json'},
 			body: JSON.stringify({

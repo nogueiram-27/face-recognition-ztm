@@ -12,6 +12,12 @@ import Register from './components/register/register'
 
 import './App.css';
 
+let server;
+if (process.env.NODE_ENV === 'development')  {
+  server = 'http://localhost:8080';
+} else {
+  server = 'https://tranquil-dusk-34037.herokuapp.com/';
+}
 
 const particlesOptions = {
   particles: {
@@ -83,7 +89,7 @@ class App extends React.Component {
 
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input })
-    fetch('http://localhost:8080/imageurl', {
+    fetch(`${server}/imageurl`, {
             method: 'put',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -93,7 +99,7 @@ class App extends React.Component {
       .then(response => response.json())
       .then(response => {
         if (response) {
-          fetch('http://localhost:8080/image', {
+          fetch(`${server}/image`, {
             method: 'put',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({
